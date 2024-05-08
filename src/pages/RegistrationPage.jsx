@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 import exit from "../assets/exit.svg";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const RegistrationPage = () => {
   const [name, setName] = useState("");
@@ -8,18 +9,23 @@ const RegistrationPage = () => {
   const [nameTouched, setNameTouched] = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
   const [emailInvalid, setEmailInvalid] = useState(false);
+  const [isSubmitDisable, setIsSubmitDisable] = useState(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate input fields or submit form
-    // if (!name.trim()) {
-    //   setNameTouched(true);
-    // }
-    // if (!email.trim()) {
-    //   setEmailTouched(true);
-    // }
+  //// Email validation
+  const checkEmail = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailPattern.test(email);
+    if (!isValidEmail) {
+      setEmailInvalid(true);
+    } else {
+      setEmailInvalid(false);
+    }
   };
+  useEffect(() => {
+    setEmailInvalid(false);
+  }, [email]);
 
+  ////input onchange handler
   const nameChangeHandler = (eve) => {
     setName(eve.target.value);
   };
@@ -28,18 +34,21 @@ const RegistrationPage = () => {
     setEmail(eve.target.value);
   };
 
-  const checkEmail = (eve) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Check if the entered email matches the pattern
-    const isValidEmail = emailPattern.test(eve.target.value);
-
-    if (!isValidEmail) {
-      setEmailInvalid(true);
+  ///input validation
+  useEffect(() => {
+    if (name.trim() !== "" && email.trim() !== "") {
+      setIsSubmitDisable(false);
     } else {
-      setEmailInvalid(false);
+      setIsSubmitDisable(true);
     }
+  }, [name, email, emailInvalid, isSubmitDisable]);
+
+  /////on submit handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    checkEmail();
   };
+
   return (
     <div className="h-screen flex flex-col  ">
       <div className=" flex justify-between p-[20px]">
@@ -71,7 +80,8 @@ const RegistrationPage = () => {
             />
 
             {nameTouched && name === "" && (
-              <p className="text-sm text-red-500 pl-4">
+              <p className="text-sm text-red-500 pl-4  flex items-center">
+                <ErrorIcon style={{ fontSize: "15px", paddingRight: "2px" }} />{" "}
                 Please enter your name
               </p>
             )}
@@ -81,7 +91,6 @@ const RegistrationPage = () => {
               className="h-10 mt-5 rounded-[64px] bg-primary-gray p-4 placeholder-gray-500 "
               onBlur={(e) => {
                 setEmailTouched(true);
-                checkEmail(e);
               }}
               onChange={(e) => {
                 emailChangeHandler(e);
@@ -89,19 +98,23 @@ const RegistrationPage = () => {
               value={email}
             />
             {emailTouched && email === "" && (
-              <p className="text-sm text-red-500 pl-4">
+              <p className="text-sm text-red-500 pl-4 flex items-center">
+                <ErrorIcon style={{ fontSize: "15px", paddingRight: "2px" }} />{" "}
                 Please enter your email
               </p>
             )}
 
-            {email !== "" && emailInvalid && (
-              <p className="text-sm text-red-500 pl-4">Enter a valid address</p>
+            {emailInvalid && (
+              <p className="text-sm text-red-500 pl-4 flex items-center">
+                <ErrorIcon style={{ fontSize: "15px", paddingRight: "2px" }} />{" "}
+                Enter a valid address
+              </p>
             )}
 
             <input
               type="submit"
-              className={`h-10 mt-5 mb-5 rounded-[64px]${
-                emailInvalid ? "bg-primary-black" : "bg-blue-500"
+              className={`h-10 mt-5 mb-5 rounded-[64px]  text-white ${
+                isSubmitDisable ? "bg-primary-gray-mid" : "bg-primary-black"
               }`}
             />
           </form>
