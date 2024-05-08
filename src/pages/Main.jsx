@@ -4,9 +4,32 @@ import hero from "../assets/hero.svg";
 import Frame from "../assets/Frame.svg";
 import background from "../assets/Group.svg";
 
+
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 const Main = () => {
+  
+
+  const settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    rtl: true // Right-to-left direction for text
+  };
+
+
+
   return (
     <div>
       <div className="p-4 ">
@@ -34,7 +57,6 @@ const Main = () => {
           </div>
 
           <div className="grid grid-cols-2 justify-around h-[396px] py-16 ">
-
             {/* left grid */}
             <div className=" relative ">
               <img src={hero} alt="hero" className="h-[393px] m-auto" />
@@ -75,8 +97,8 @@ const Main = () => {
                 backgroundRepeat: "no-repeat",
               }}
             >
-              <div className="relative">
-                <Carousel showArrows showIndicators>
+              <div className="relative ">
+                <Carousel >
                   <div className="w-[396px]">
                     <p className="text-4xl font-semibold">
                       Enhance fortune 50 company’s insights teams research
@@ -100,43 +122,78 @@ const Main = () => {
                   <div className="carousel-indicators mt-4"></div>
                 </div>
               </div>
+
+              
             </div>
-
-
-
-
-
           </div>
         </div>
-        
-{/* part 2 */}
 
-<div className=" bg-primary-green  m-auto mt-48 h-80 rounded-lg py-8 px-4 grid grid-cols-2" >
+        {/* part 2 */}
 
-{/* left div */}
-<div className=" bg-white">
-    
-    <div className="py-4 px-12">
-        <p>What’s on your mind</p>
-        <p className="text-4xl font-semibold">Ask Questions</p>
-    </div>
+        <div className=" bg-primary-green  m-auto mt-48 h-80 rounded-lg py-8 px-4 grid grid-cols-2">
+          {/* left div */}
+          <div className=" bg-white">
+            <div className="py-4 px-12">
+              <p>What’s on your mind</p>
+              <p className="text-4xl font-semibold">Ask Questions</p>
+                {/* //image */}
+              <img src="" alt="" />
+            </div>
+          </div>
 
-    
-     </div>
+          {/* right div */}
+          <div>
+            
+                  <Accordion>
+        <AccordionSummary
+          expandIcon={<ArrowDownwardIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography>Accordion 1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ArrowDropDownIcon />}
+          aria-controls="panel2-content"
+          id="panel2-header"
+        >
+          <Typography>Accordion 2</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
 
-{/* right div */}
-<div> </div>
+            
+            
+            
+             </div>
+        </div>
 
+
+      {/* //footer */}
+
+<div className="flex h-[144px] bg-primary-gray p-[60px] justify-between rounded-[40px] text-[18px] mt-[64px]">
+  <p> <span className="inline-block pr-2">&copy;</span>Talup 2023. All rights reserved</p>
+
+  <p>  Terms & Conditions</p>
 </div>
+
+
+
+
       </div>
-   
-
-
-
-
-
-
-
     </div>
   );
 };
