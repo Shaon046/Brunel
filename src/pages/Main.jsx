@@ -6,10 +6,19 @@ import background from "../assets/Group.svg";
 import Union from "../assets/Union.svg";
 import spark from "../assets/spark.svg";
 import { Link } from "react-router-dom";
-
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Accordion from "../Components/Accordion";
+
+const customIndicatorStyles = {
+  background: "blue", // Change indicator background color to blue
+  width: "8px", // Set width of indicator
+  height: "8px", // Set height of indicator
+  borderRadius: "50%", // Make indicator circular
+  margin: "0 5px", // Add margin between indicators
+};
+
 const Main = () => {
   const items = [
     {
@@ -39,12 +48,6 @@ const Main = () => {
     },
   ];
 
-
-
-
-
-
-
   return (
     <div>
       <div className="p-4 ">
@@ -52,12 +55,12 @@ const Main = () => {
           <img src={logo} alt="Logo" className="h-[47px]  " />
 
           <div className="text-[18px] ">
-           
-           <Link to="/register">
-           <button className="p-3 rounded-[56px] border-[1px] border-primary-gray-dark mr-2 hover:bg-primary-gray-mid">
-              Get Projects
-            </button></Link>
-            
+            <Link to="/register">
+              <button className="p-3 rounded-[56px] border-[1px] border-primary-gray-dark mr-2 hover:bg-primary-gray-mid">
+                Get Projects
+              </button>
+            </Link>
+
             <button className="p-3 rounded-[56px] bg-primary-black text-white hover:bg-primary-gray-dark ">
               Onboard Talents
             </button>
@@ -122,23 +125,34 @@ const Main = () => {
 
             {/* //grid right */}
             <div
-              className="flex justify-start items-center ml-[30%]"
+              className="flex flex-col justify-center items-start  ml-[30%]"
               style={{
                 backgroundImage: `url(${background})`,
                 backgroundRepeat: "no-repeat",
               }}
             >
               <div className="relative ">
-                <Carousel showStatus showIndicators style={{ width: "500px" }}>
-                  <p className="text-4xl font-semibold">
+                <Carousel
+                  showStatus={false}
+                  showIndicators
+                  autoPlay
+               
+                 
+                >
+                  <p className="text-4xl font-semibold text-start">
+                    Enhance fortune 50 company’s insights teams research
+                    capabilities
+                  </p>
+                  <p className="text-4xl font-semibold text-start">
                     Enhance fortune 50 company’s insights teams research
                     capabilities
                   </p>
                 </Carousel>
-
-                <div className="absolute bottom-0 left-0 right-0 flex justify-center">
-                  <div className="carousel-indicators mt-4"></div>
-                </div>
+              </div>
+              <div>
+                <button className="flex items-center p-3 mt-10 rounded-[56px] bg-primary-black text-white hover:bg-primary-gray-dark ">
+                  Explore More <ArrowForwardIcon sx={{paddingLeft:"8px"}}/>
+                </button>
               </div>
             </div>
           </div>
