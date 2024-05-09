@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../assets/logo.svg";
 import hero from "../assets/hero.svg";
 import Frame from "../assets/Frame.svg";
 import background from "../assets/Group.svg";
@@ -11,6 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Accordion from "../Components/Accordion";
 import NavBar from "../Components/NavBar";
+
 const Main = () => {
   const items = [
     {

@@ -4,9 +4,7 @@ import exit from "../assets/exit.svg";
 import ErrorIcon from "@mui/icons-material/Error";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-
-
+import { useRef } from "react";
 
 const RegistrationPage = () => {
   const [name, setName] = useState("");
@@ -16,17 +14,27 @@ const RegistrationPage = () => {
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
 
+  const emailInvalid2 = useRef();
+
   //// Email validation
   const checkEmail = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailPattern.test(email);
+    emailInvalid2.current = !isValidEmail;
+
     if (!isValidEmail) {
+      emailInvalid2.current = true;
+      console.log("TRUE");
       setEmailInvalid(true);
     } else {
       setEmailInvalid(false);
+      emailInvalid2.current = false;
+      console.log("FALSE");
+      navigate("/success");
     }
   };
   useEffect(() => {
+    emailInvalid2.current = false;
     setEmailInvalid(false);
   }, [email]);
 
@@ -52,25 +60,19 @@ const RegistrationPage = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+
     checkEmail();
-
-
-if(!emailInvalid && name.trim()!=="" && email.trim()!==""  ){navigate("/success")}
-
-    
-   
-    
-
   };
 
   return (
     <div className=" flex flex-col  ">
-      
       <div className=" flex justify-between p-[20px]">
         <img src={logo} alt="Logo" className="h-[47px]  " />
 
-        <Link to="/"> <img src={exit} alt="exit" className="h-[47px] " /></Link>
-        
+        <Link to="/">
+          {" "}
+          <img src={exit} alt="exit" className="h-[47px] " />
+        </Link>
       </div>
 
       <div className="h-[572px]  m-auto">
@@ -129,7 +131,8 @@ if(!emailInvalid && name.trim()!=="" && email.trim()!==""  ){navigate("/success"
             )}
 
             <input
-              type="submit" value="Submit"
+              type="submit"
+              value="Submit"
               className={`h-10 mt-12 mb-5 rounded-[64px]  text-white ${
                 isSubmitDisable ? "bg-primary-gray-mid" : "bg-primary-black"
               }`}
