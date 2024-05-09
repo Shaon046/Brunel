@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 import exit from "../assets/exit.svg";
 import ErrorIcon from "@mui/icons-material/Error";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 const RegistrationPage = () => {
   const [name, setName] = useState("");
@@ -44,9 +49,18 @@ const RegistrationPage = () => {
   }, [name, email, emailInvalid, isSubmitDisable]);
 
   /////on submit handler
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     checkEmail();
+
+
+if(!emailInvalid && name.trim()!=="" && email.trim()!==""  ){navigate("/success")}
+
+    
+   
+    
+
   };
 
   return (
@@ -54,7 +68,9 @@ const RegistrationPage = () => {
       
       <div className=" flex justify-between p-[20px]">
         <img src={logo} alt="Logo" className="h-[47px]  " />
-        <img src={exit} alt="exit" className="h-[47px] " />
+
+        <Link to="/"> <img src={exit} alt="exit" className="h-[47px] " /></Link>
+        
       </div>
 
       <div className="h-[572px]  m-auto">
@@ -98,7 +114,7 @@ const RegistrationPage = () => {
               }}
               value={email}
             />
-            {emailTouched && email === "" && (
+            {emailTouched && email === "" && !emailInvalid && (
               <p className="text-sm text-red-500 pt-2 pl-4 flex items-center">
                 <ErrorIcon style={{ fontSize: "15px", paddingRight: "2px" }} />{" "}
                 Please enter your email
