@@ -10,33 +10,32 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Accordion from "../Components/Accordion";
-
-
-
+import NavBar from "../Components/NavBar";
 const Main = () => {
   const items = [
     {
-      title: "Section 1",
+      title: "Do you offer freelancers?",
       content:
         "If unhappy with a project, communicate with the freelancer, allow for revisions, and refer to the agreement. Escalate to platform support if needed, considering mediation. Review policies, seek collaborative solutions for resolution.",
     },
     {
-      title: "Section 2",
+      title:
+        "What’s the guarantee that I will be satisfied with the hired talent?",
       content:
         "If unhappy with a project, communicate with the freelancer, allow for revisions, and refer to the agreement. Escalate to platform support if needed, considering mediation. Review policies, seek collaborative solutions for resolution. for section 2...",
     },
     {
-      title: "Section 3",
+      title: "Can I hire multiple talents at once?",
       content:
         "If unhappy with a project, communicate with the freelancer, allow for revisions, and refer to the agreement. Escalate to platform support if needed, considering mediation. Review policies, seek collaborative solutions for resolution.",
     },
     {
-      title: "Section 4",
+      title: "Why should I not go to an agency directly?",
       content:
         "If unhappy with a project, communicate with the freelancer, allow for revisions, and refer to the agreement. Escalate to platform support if needed, considering mediation. Review policies, seek collaborative solutions for resolution.",
     },
     {
-      title: "Section 5",
+      title: "Who can help me pick a right skillset and duration for me?",
       content:
         "If unhappy with a project, communicate with the freelancer, allow for revisions, and refer to the agreement. Escalate to platform support if needed, considering mediation. Review policies, seek collaborative solutions for resolution.",
     },
@@ -45,21 +44,7 @@ const Main = () => {
   return (
     <div>
       <div className="p-4 ">
-        <div className=" h-16 p-2 w-full rounded-[56px] border-[1px] border-primary-gray-dark flex justify-between items-center">
-          <img src={logo} alt="Logo" className="h-[47px]  " />
-
-          <div className="text-[18px] ">
-            <Link to="/register">
-              <button className="p-3 rounded-[56px] border-[1px] border-primary-gray-dark mr-2 hover:bg-primary-gray-mid">
-                Get Projects
-              </button>
-            </Link>
-
-            <button className="p-3 rounded-[56px] bg-primary-black text-white hover:bg-primary-gray-dark ">
-              Onboard Talents
-            </button>
-          </div>
-        </div>
+        <NavBar />
 
         <div className="">
           <div className="text-center ">
@@ -176,13 +161,18 @@ const Main = () => {
         {/* //footer */}
 
         <div className="flex h-[144px] bg-primary-gray p-[60px] justify-between rounded-[40px] text-[18px] mt-[64px]">
-          <p>
+          <Link className="underline">
             {" "}
-            <span className="inline-block pr-2">&copy;</span>Talup 2023. All
-            rights reserved
-          </p>
+            <p>
+              {" "}
+              <span className="inline-block pr-2">&copy;</span>Talup 2023. All
+              rights reserved
+            </p>
+          </Link>
 
-          <p> Terms & Conditions</p>
+          <Link className=" underline">
+            <p> Terms & Conditions</p>
+          </Link>
         </div>
       </div>
     </div>
