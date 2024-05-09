@@ -6,18 +6,12 @@ import background from "../assets/Group.svg";
 import Union from "../assets/Union.svg";
 import spark from "../assets/spark.svg";
 import { Link } from "react-router-dom";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Accordion from "../Components/Accordion";
 
-const customIndicatorStyles = {
-  background: "blue", // Change indicator background color to blue
-  width: "8px", // Set width of indicator
-  height: "8px", // Set height of indicator
-  borderRadius: "50%", // Make indicator circular
-  margin: "0 5px", // Add margin between indicators
-};
+
 
 const Main = () => {
   const items = [
@@ -132,13 +126,7 @@ const Main = () => {
               }}
             >
               <div className="relative ">
-                <Carousel
-                  showStatus={false}
-                  showIndicators
-                  autoPlay
-               
-                 
-                >
+                <Carousel showStatus={false} showIndicators autoPlay>
                   <p className="text-4xl font-semibold text-start">
                     Enhance fortune 50 company’s insights teams research
                     capabilities
@@ -151,7 +139,7 @@ const Main = () => {
               </div>
               <div>
                 <button className="flex items-center p-3 mt-10 rounded-[56px] bg-primary-black text-white hover:bg-primary-gray-dark ">
-                  Explore More <ArrowForwardIcon sx={{paddingLeft:"8px"}}/>
+                  Explore More <ArrowForwardIcon sx={{ paddingLeft: "8px" }} />
                 </button>
               </div>
             </div>

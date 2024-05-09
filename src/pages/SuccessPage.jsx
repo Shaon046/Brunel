@@ -19,7 +19,7 @@ const SuccessPage = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="h-screen flex flex-col  ">
